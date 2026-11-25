@@ -1,0 +1,386 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+:root{
+  --sandstone:#DDD0C8;
+  --amethyst:#BDA2B1;
+  --desert:#D0B69D;
+  --mulberry:#4D2E3E;
+}
+
+.sobre-hero{
+  background: white;
+  border: 8px solid var(--mulberry);
+  border-radius: 30px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 12px 12px 0 var(--desert);
+  margin-bottom: 30px;
+}
+.sobre-hero h1{ color: var(--mulberry); font-size: 42px; margin-bottom: 10px; }
+.sobre-hero p{ color: #5a3a4a; font-size: 18px; line-height: 1.7; max-width: 800px; margin: auto; }
+
+.video-container{
+  background: var(--sandstone);
+  border-radius: 25px;
+  padding: 25px;
+  border: 6px solid var(--mulberry);
+  margin: 30px auto;
+  max-width: 850px;
+  box-shadow: 10px 10px 0 var(--amethyst);
+  text-align: center;
+}
+.video-container h2{
+  color: var(--mulberry);
+  margin-bottom: 15px;
+}
+.video-container video{
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  border-radius: 18px;
+  border: 4px solid var(--mulberry);
+  background: #000;
+  object-fit: cover;
+}
+.video-container p{
+  margin-top: 12px;
+  color: var(--mulberry);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.equipo-grid{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+.integrante-card{
+  width: 200px;
+  background: white;
+  border-radius: 20px;
+  border: 6px solid var(--amethyst);
+  padding: 20px;
+  text-align: center;
+  transition: .3s;
+  box-shadow: 8px 8px 0 var(--sandstone);
+}
+.integrante-card:hover{
+  transform: translateY(-8px);
+  box-shadow: 12px 12px 0 var(--mulberry);
+}
+.integrante-card img{
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--desert);
+  margin-bottom: 12px;
+}
+.integrante-card h3{ color: var(--mulberry); margin: 8px 0 4px; }
+.integrante-card span{ color: var(--amethyst); font-weight: bold; font-size: 14px; }
+.integrante-card p{ font-size: 14px; color: #6b4a5a; }
+
+/* ===== APARTADO SUPER KAWAI ===== */
+.vibe-container{
+  margin: 50px auto 10px;
+  background: white;
+  padding: 35px 25px;
+  border-radius: 30px;
+  border: 8px solid var(--mulberry);
+  box-shadow: 12px 12px 0 var(--desert);
+  text-align: center;
+  max-width: 650px;
+}
+.vibe-titulo{
+  font-family: 'Fredoka', sans-serif;
+  color: var(--mulberry);
+  font-size: 28px;
+  margin-bottom: 8px;
+  text-shadow: 2px 2px 0 var(--sandstone);
+}
+.vibe-sub{
+  color: #6b4a5a;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+.btn-vibe{
+  background: linear-gradient(135deg, var(--mulberry), #6b3a4f);
+  color: white;
+  border: 4px solid var(--mulberry);
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 6px 0 var(--desert);
+}
+.btn-vibe:hover{
+  transform: translateY(-4px) scale(1.05) rotate(-1deg);
+  box-shadow: 0 10px 0 var(--amethyst);
+}
+.btn-vibe:active{
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--desert);
+}
+.huesito-grande{
+  font-size: 24px;
+  display: inline-block;
+  animation: mueve-huesito 1s ease-in-out infinite;
+}
+@keyframes mueve-huesito{
+  0%,100%{ transform: rotate(-8deg) translateY(0); }
+  50%{ transform: rotate(8deg) translateY(-3px); }
+}
+.vibe-resultado{ margin-top: 25px; }
+.vibe-resultado.oculto{ display: none; }
+.vibe-card{
+  background: var(--sandstone);
+  border: 4px dashed var(--amethyst);
+  border-radius: 20px;
+  padding: 20px;
+}
+.vibe-emoji{ font-size: 50px; margin: 0; }
+.vibe-card h3{
+  font-family: 'Fredoka', sans-serif;
+  color: var(--mulberry);
+  font-size: 22px;
+  margin: 10px 0;
+}
+.vibe-card p{ font-size: 16px; line-height: 1.5; color: #5a3a4a; }
+@keyframes cae{
+  0%{ transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100%{ transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* ===== CONTACTO SUPER CUTE ===== */
+.contacto-cute{
+  background: white;
+  border: 6px solid var(--amethyst);
+  border-radius: 25px;
+  padding: 25px;
+  text-align: center;
+  max-width: 650px;
+  margin: 30px auto;
+  box-shadow: 8px 8px 0 var(--sandstone);
+}
+.contacto-cute h2{
+  color: var(--mulberry);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.contacto-cute p{ color: #6b4a5a; line-height: 1.7; font-size: 15px; }
+.contacto-links{
+  color: var(--mulberry);
+  font-weight: bold;
+  line-height: 1.9;
+  margin-top: 12px;
+}
+.contacto-links a{ color: var(--mulberry); text-decoration: none; }
+.contacto-links a:hover{ text-decoration: underline; }
+</style>
+
+<div class="contenedor">
+ 
+  <div class="sobre-hero">
+    <h1>Sobre Nosotros - Snoopy´s food ૮ • ﻌ • ა🦴</h1>
+    <p>
+      Este proyecto <b>TechShop</b> fue creado para la materia de aplicaciones web con Flask, con el profesor Hector Perez y 
+      la profesora Maria Navidad .
+      Nuestro objetivo fue crear un carrito de compras funcional, con base de datos, que permita a los usuarios ver un catálogo, agregar productos, generar pedidos y simular una compra real.
+      Quisimos que no solo fuera funcional, sino también estético, usando una paleta suave y moderna.
+    </p>
+  </div>
+
+  <div class="video-container">
+    <h2>Nuestro Video de Presentación  ૮⸝⸝> ﻌ <⸝⸝ა 🎬</h2>
+    <video controls preload="metadata" poster="{{ url_for('static', filename='img/portada_video.jpg') }}">
+      <source src="{{ url_for('static', filename='videos/videoplayback.mp4') }}" type="video/mp4">
+      Tu navegador no soporta videos.
+    </video>
+    <p>Conoce cómo hicimos Snoopy´s food ⋆˚ʚ ˖𐂯⋆˚࿔  y cómo funciona nuestro carrito</p>
+  </div>
+
+  <!-- ===== 1. VIBE KAWAI (AHORA ARRIBA) ===== -->
+  <div class="vibe-container">
+    <h2 class="vibe-titulo">˚₊· ͟͟͞͞➳❥ Qué vibe de Snoopy das hoy? 
+      <br>
+      ᐡ・ﻌ・ᐡ
+    </h2>
+    <p class="vibe-sub">Presiona el huesito y descubre tu mood del día jsjs ૮₍ • ᴥ • ₎ა🐾🦴</p>
+    
+    <button id="btnVibe" class="btn-vibe" type="button">
+      <span class="huesito-grande">🦴</span>
+      <span>Presióname!</span>
+    </button>
+
+    <div id="resultadoVibe" class="vibe-resultado oculto">
+      <div class="vibe-card">
+        <p id="vibeEmoji" class="vibe-emoji"></p>
+        <h3 id="vibeNombre"></h3>
+        <p id="vibeTexto"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 2. CONTACTO ===== -->
+  <div class="contacto-cute">
+    <h2>¿Quieres más Snoopy vibes? ૮ ˶ᵔ ᵕ ᵔ˶ ა ♡</h2>
+    <p>
+      ¡Síguenos y pide con amor en <b>Snoopy's Food</b>! 🍓🦴<br>
+      Somos tu tiendita kawaii favorita, hecha con mucho amor por el equipo de Snoopy.
+    </p>
+    <p class="contacto-links">
+      📞 WhatsApp / Tel: <a href="tel:+525550100123">555-010-0123</a><br>
+      📸 Instagram: <a href="https://instagram.com/snoopys.food" target="_blank">@snoopys.food</a><br>
+      🎵 TikTok: <a href="https://tiktok.com/@snoopys.food" target="_blank">@snoopys.food</a><br>
+      💌 Correo: <a href="mailto:hola@snoopysfood.com">hola@snoopysfood.com</a>
+    </p>
+    <p style="font-size: 13px; color: #9a7a8a; margin-top: 10px;">✨ Te contestamos con amor y muchos huesitos ✨</p>
+  </div>
+
+  <!-- ===== 3. EQUIPO AL FINAL ===== -->
+  <h2 style="text-align:center; color: var(--mulberry); margin: 50px 0 10px;"> ⋆˚ʚ ˖𐂯⋆˚࿔ Nuestro Equipo - 5 Integrantes ⋆˚ʚ ˖𐂯⋆˚࿔ </h2>
+  <div class="equipo-grid">
+    
+    <div class="integrante-card">
+      <img src="{{ url_for('static', filename='img/integrante1.jpg') }}" alt="Integrante 1">
+      <h3>Alfredo Prado ૮˶- ﻌ •˶ა ⋆</h3>
+      <span>Rol: Base de datos</span>
+      <p>Encargado de tienda.db y app.py</p>
+    </div>
+
+    <div class="integrante-card">
+      <img src="{{ url_for('static', filename='img/integrante2.jpg') }}" alt="Integrante 2">
+      <h3>Ana Lopez  
+        <br>
+        ૮₍˶• . • ⑅₎ა</h3>
+      <span>Rol: Diseño</span>
+      <p>Diseño del catálogo y paleta</p>
+    </div>
+
+    <div class="integrante-card">
+      <img src="{{ url_for('static', filename='img/integrante3.jpg') }}" alt="Integrante 3">
+      <h3>Tristan Lomeli ૮˶- ﻌ •˶ა ⋆</h3>
+      <span>Rol: Estructura de la app</span>
+      <p>Lógica del carrito</p>
+    </div>
+
+    <div class="integrante-card">
+      <img src="{{ url_for('static', filename='img/integrante4.jpg') }}" alt="Integrante 4">
+      <h3>Naomi Ayala  
+        <br>
+        ૮₍˶• . • ⑅₎ა</h3>
+      <span>Rol: Diseño</span>
+      <p>Estilos CSS y responsive</p>
+    </div>
+
+    <div class="integrante-card">
+      <img src="{{ url_for('static', filename='img/integrante5.jpg') }}" alt="Integrante 5">
+      <h3>Jimena Rojas  
+        <br>
+        ૮₍˶• . • ⑅₎ა</h3>
+      <span>Rol: Documentación</span>
+      <p>Pruebas y presentación</p>
+    </div>
+
+  </div>
+
+  <div style="text-align:center; margin: 40px 0;">
+    <a href="{{ url_for('index') }}" class="btn" style="background: var(--mulberry); color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold;"> Volver a la Tienda ૮ •`ﻌ •́ა</a>
+  </div>
+
+</div>
+
+<script>
+const vibes = [
+    { emoji: "૮ - ﻌ • ა𐂯 .ᐟ⸝⸝", nombre: "Snoopy soñador", texto: "Hoy andas en tu casita imaginando que eres piloto de la WWI, bien cute y distraído jsjs" },
+    { emoji: "૮´˶• ᴥ •˶`ა", nombre: "Snoopy comelón", texto: "Tu vibe de hoy es buscar galletitas y no compartir. 100% Snoopy con su plato de comida" },
+    { emoji: "₍˄·͈༝·͈˄₎ฅ˒˒", nombre: "Snoopy fresita", texto: "Andas bien coquette, con moñito rosa como Belle, súper kawai y delicada" },
+    { emoji: "zᶻ ૮˶- ﻌ -˶ა⌒)ᦱ", nombre: "Snoopy flojito", texto: "Hoy no quieres hacer nada, solo dormir panza arriba en tu casita. Se vale!" },
+    { emoji: "૮₍˶ •. • ⑅₎ა", nombre: "Snoopy enamorad@", texto: "Das vibes de Snoopy viendo a su crush, con corazoncitos en los ojos ♡" },
+    { emoji: "૮ • ﻌ - ა", nombre: "Snoopy travieso", texto: "Hoy andas con ganas de molestar a Charlie Brown, bien picarón y chistosito" },
+    { emoji: "ᐡ > ﻌ < ᐡ", nombre: "Snoopy feliz", texto: "Tu energía hoy es bailar el Snoopy dance sin razón. Pura good vibes!" },
+    { emoji: "૮ ⚆ﻌ⚆ა", nombre: "Snoopy dramático", texto: "Hoy todo te da ansiedad como cuando se le pierde su platito, pero cute" },
+    { emoji: "૮ ◞ ﻌ ◟ ა  ♡", nombre: "Snoopy Woodstock lover", texto: "Das vibes de querer a tu mejor amig@ y no soltarlo, bien pegajosito" },
+    { emoji: " ૮ >ﻌ< ა ᨐᵉᵒʷ", nombre: "Snoopy fresa-cereza", texto: "Hoy eres la de la foto de tu compu, Snoopy fresita, antojas y eres dulce 🍓" },
+    { emoji: "૮₍ ´˶• ᴥ •˶` ₎ა", nombre: "Snoopy Alfredo - Base de datos", texto: "Hoy das vibes de Alfredo, ordenando todo en tu tienda.db como un pro jsjs" },
+    { emoji: "ꉂ૮˵˃ ꈊ ˂˵ა", nombre: "Snoopy Ana - Diseño", texto: "Hoy eres Ana, con el ojo estético para la paleta perfecta" },
+    { emoji: "૮˶- ﻌ •˶ა", nombre: "Snoopy Tristan - Lógica", texto: "Hoy eres Tristan, resolviendo el carrito sin despeinarte" }
+];
+
+function soniditoPop() {
+    try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.connect(g);
+        g.connect(ctx.destination);
+        o.frequency.setValueAtTime(800, ctx.currentTime);
+        o.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.12);
+        g.gain.setValueAtTime(0.25, ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+        o.type = "sine";
+        o.start();
+        o.stop(ctx.currentTime + 0.16);
+    } catch(e) { console.log("sin sonido"); }
+}
+
+function soniditoSparkle() {
+    try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        [1000, 1300, 1600].forEach((freq, i) => {
+            const o = ctx.createOscillator();
+            const g = ctx.createGain();
+            o.connect(g); g.connect(ctx.destination);
+            o.frequency.value = freq;
+            g.gain.setValueAtTime(0.12, ctx.currentTime + i * 0.08);
+            g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.08 + 0.15);
+            o.start(ctx.currentTime + i * 0.08);
+            o.stop(ctx.currentTime + i * 0.08 + 0.16);
+        });
+    } catch(e) {}
+}
+
+document.getElementById('btnVibe').addEventListener('click', function() {
+    const resultado = document.getElementById('resultadoVibe');
+    const btn = this;
+    
+    soniditoPop();
+    if (navigator.vibrate) navigator.vibrate(50);
+    
+    btn.style.transform = "scale(0.9) rotate(10deg)";
+    setTimeout(() => btn.style.transform = "", 200);
+    
+    const random = vibes[Math.floor(Math.random() * vibes.length)];
+    
+    document.getElementById('vibeEmoji').textContent = random.emoji;
+    document.getElementById('vibeNombre').textContent = random.nombre;
+    document.getElementById('vibeTexto').textContent = random.texto;
+    
+    resultado.classList.remove('oculto');
+    
+    setTimeout(soniditoSparkle, 150);
+    
+    const confetti = document.createElement('div');
+    confetti.textContent = "🦴 ♡ 🐶 ✨";
+    confetti.style.position = "fixed";
+    confetti.style.left = (Math.random()*80 + 10) + "%";
+    confetti.style.top = "0";
+    confetti.style.fontSize = "20px";
+    confetti.style.zIndex = "9999";
+    confetti.style.pointerEvents = "none";
+    confetti.style.animation = "cae 1.5s ease-out forwards";
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 1500);
+});
+</script>
+{% endblock %}

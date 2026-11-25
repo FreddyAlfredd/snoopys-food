@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Productos - TechShop{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <h1>Catálogo de productos zᶻ   ૮˶- ﻌ -˶ა⌒)ᦱ</h1>
+  <p>Selecciona un producto para agregarlo a tu carrito ૮ › ˕ ‹ ა.</p>
+  
+ 
+  <form method="GET" action="{{ url_for('index') }}" style="margin-top:20px; display:flex; gap:10px; justify-content:center;">
+    <input type="text" name="q" value="{{ q or '' }}" placeholder="Buscar producto ૮⸝⸝> ﻌ <⸝⸝ა..." style="padding:10px; width:300px; border-radius:5px; border:1px solid #ccc;">
+    <button type="submit" class="btn">Buscar ฅ՞•ﻌ•՞ฅ</button>
+    {% if q %}
+      <a href="{{ url_for('index') }}" class="btn" style="background:#999;">Limpiar ੯‧̀͡u\</a>
+    {% endif %}
+  </form>
+  {% if q %}
+    <p style="margin-top:10px;">  ⁰ᨵᩥ⁰ Resultados para: <b>{{ q }}</b></p>
+  {% endif %}
+</section>
+
+<div class="productos">
+{% for producto in productos %}
+<article class="producto">
+  <img src="{{ url_for('static', filename=producto.imagen) }}" alt="{{ producto.nombre }}">
+  <div class="producto-info">
+    <h2>{{ producto.nombre }}</h2>
+    <p>{{ producto.descripcion }}</p>
+    <strong>${{ "%.2f"|format(producto.precio) }}</strong>
+    <form action="{{ url_for('agregar', producto_id=producto.id) }}" method="POST">
+      <button class="btn" type="submit">Agregar al carrito ૮⸝⸝> ﻌ <⸝⸝ა </button>
+    </form>
+  </div>
+</article>
+{% endfor %}
+</div>
+
+{% endblock %}

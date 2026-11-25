@@ -1,0 +1,27 @@
+{% extends "base.html" %} 
+{% block title %}Finalizar compra ‑ Snoopy´s food ฅ՞•ﻌ•՞ฅ {% endblock %} 
+{% block content %} 
+<h1>Finalizar compra 🐕ƥʊƥƥɣ</h1>
+<div class="checkout">
+<section class="formulario">
+<h2>Datos del cliente .⭑🦴𐙚 ⊹</h2>
+<form method="POST">
+<label>Nombre completo ૮ ˵◕ ﻌ ◕˵ ა</label>
+<input type="text" name="cliente" required>
+<label>Correo electrónico ૮₍ • ᴥ • ₎ა૮ • ﻌ - ა</label>
+<input type="email" name="email" required>
+<label>Dirección de entrega υ´• ﻌ •`υ </label>
+<textarea name="direccion" rows="4" required></textarea>
+<button class="btn" type="submit">Confirmar pedido ૮ • ﻌ - ა</button>
+</form>
+</section> 
+<section class="resumen-compra">
+<h2>Resumen ꉂ૮˵˃ ꈊ ˂˵ა</h2>
+{% for item in items %} 
+<p>{{ item.nombre }} x {{ item.cantidad }} <strong>${{ "%.2f"|format(item.subtotal) }}</strong></p>
+{% endfor %} 
+<hr>
+<h2>૮ ˶′ ཅ ‵˶ ა Total: ${{ "%.2f"|format(total) }}</h2>
+</section>
+</div>
+{% endblock %}

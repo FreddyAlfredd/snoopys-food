@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Pedidos - TechShop{% endblock %}
+{% block content %}
+<section class="hero">
+    <h1>Catálogo de pedidos ₊˚⊹⋆υ´• ﻌ •`υ.✦ ݁˖</h1>
+</section>
+<div class="productos">
+    <article class="productos">
+        <table class="pedido" border="1" width="380px">
+            <tr>
+                <th>ID ૮・ﻌ・ა</th>
+                <th>Cliente ૮・ﻌ・ა</th>
+                <th>Email ૮・ﻌ・ა</th>
+                <th>Dirección ૮・ﻌ・ა</th>
+                <th>Total ૮・ﻌ・ა</th>
+                <th>Ver ૮・ﻌ・ა</th>
+            </tr>
+            {% for pedido in pedidos %}
+            <tr>
+                <td>{{ pedido.id }}</td>
+                <td>{{ pedido.cliente }}</td>
+                <td>{{ pedido.email }}</td>
+                <td>{{ pedido.direccion }}</td>
+                <td>${{ "%.2f"|format(pedido.total) }}</td>
+                <td style="text-align: center;">
+                    <a href="{{ url_for('pedido_producto', id_pedido=pedido.id) }}" 
+                       class="btn-detalle"
+                       style="display:inline-block; padding:5px 12px; background:#ff8fab; color:white; text-decoration:none; border-radius:20px; font-weight:bold; font-size:13px;">
+                        Ver detalle ૮꒰˶• ༝ •˶꒱ა ♡
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" style="text-align:center; padding:15px;">No hay pedidos todavía (´• ω •`)</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </article>
+</div>
+
+<style>
+    
+    table.pedido {
+        border-collapse: collapse;
+        margin: 0 auto;
+        background: white;
+    }
+    table.pedido th, table.pedido td {
+        padding: 8px 10px;
+        text-align: center;
+    }
+    .btn-detalle:hover {
+        background: #ff5d8f !important;
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}
