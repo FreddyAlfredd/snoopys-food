@@ -1,0 +1,462 @@
+/* IMPORT SIEMPRE VA PRIMERO */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --sandstone: #DDD0C8; /* SANDSTONE BLUSH */
+    --amethyst: #BDA2B1;  /* AMETHYST HAZE */
+    --desert: #D0B69D;    /* DESERT ROSE */
+    --mulberry: #4D2E3E;  /* MULBERRY DEPTH */
+    --white: #ffffff;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--sandstone);
+    color: var(--mulberry);
+}
+
+.contenedor {
+    width: min(1100px, 92%);
+    margin: auto;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* --- LOGO SNOOPY'S FOOD --- */
+.logo {
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Fredoka', 'Quicksand', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 3px 3px 0 var(--desert), 6px 6px 0 rgba(0,0,0,0.25);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform .3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05) rotate(-1.5deg);
+    color: #FFE6EF;
+}
+
+.logo .huesito {
+    font-size: 1.1rem;
+    display: inline-block;
+    animation: mueve-huesito 1.5s ease-in-out infinite;
+}
+
+@keyframes mueve-huesito {
+    0%, 100% { transform: rotate(-8deg) translateY(0); }
+    50% { transform: rotate(8deg) translateY(-3px); }
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+nav a:hover {
+    color: var(--amethyst);
+}
+
+header {
+    background:
+        radial-gradient(circle at 10% 20%, var(--white) 0 4%, transparent 5%),
+        radial-gradient(circle at 90% 30%, var(--amethyst) 0 4%, transparent 5%),
+        linear-gradient(135deg, var(--mulberry), #6b3a4f, var(--mulberry));
+    color: white;
+    text-align: center;
+    padding: 55px 20px;
+    border-bottom: 12px solid var(--desert);
+    box-shadow: 0 8px 20px var(--amethyst);
+}
+
+header h1 {
+    font-family: 'Fredoka', 'Quicksand', sans-serif;
+    font-size: 55px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 4px 4px 0 var(--desert), 8px 8px 0 var(--mulberry);
+    line-height: 1.1;
+}
+
+header h1 .subtitulo {
+    display: block;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: none;
+    opacity: 0.9;
+    margin-top: 8px;
+}
+
+/* ========================================= */
+/* NUEVO: TODOS LOS TÍTULOS CON EL MISMO DISEÑO BELLO */
+/* ========================================= */
+h1, h2, h3 {
+    font-family: 'Fredoka', 'Quicksand', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+h1:hover, h2:hover, h3:hover {
+    transform: translateY(-3px) rotate(-0.5deg);
+}
+
+@keyframes aparece-titulo {
+    0% { opacity: 0; transform: translateY(20px) scale(0.9); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+main h1, main h2 {
+    animation: aparece-titulo 0.6s ease-out both;
+}
+
+main h2 { animation-delay: 0.1s; }
+main h3 { animation-delay: 0.2s; }
+
+/* Línea bonita debajo de los títulos de secciones */
+.hero h2, .formulario h2, .resumen-compra h2 {
+    position: relative;
+    display: inline-block;
+}
+
+.hero h2::after, .formulario h2::after, .resumen-compra h2::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--desert), var(--amethyst), var(--desert));
+    border-radius: 50px;
+    transition: width 0.3s ease;
+}
+
+.hero h2:hover::after, .formulario h2:hover::after, .resumen-compra h2:hover::after {
+    width: 90%;
+}
+
+/* Huesito / icono que se mueve en cualquier título */
+.titulo-icon, .huesito {
+    display: inline-block;
+    animation: mueve-huesito 1.5s ease-in-out infinite;
+    margin-left: 6px;
+}
+
+.hero {
+    background: var(--sandstone);
+    padding: 30px;
+    margin: 40px auto;
+    border-radius: 30px;
+    text-align: center;
+    border: 8px solid var(--mulberry);
+    box-shadow: 10px 10px 0 var(--amethyst), -10px -10px 0 var(--desert);
+}
+
+.hero h2 {
+    color: var(--mulberry);
+    font-size: 35px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 0 var(--white);
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 30px auto;
+}
+
+.producto {
+    background: var(--white);
+    border-radius: 25px;
+    overflow: hidden;
+    border: 7px solid var(--mulberry);
+    box-shadow: 12px 12px 0 var(--desert);
+    transition: transform .3s, box-shadow .3s;
+}
+
+.producto:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 15px 15px 0 var(--amethyst);
+}
+
+.producto img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.producto-info strong {
+    display: block;
+    font-size: 1.4rem;
+    margin: 15px 0;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 12px 22px;
+    background: var(--mulberry);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50px;
+    border: 4px solid var(--mulberry);
+    transition: .3s;
+}
+
+.btn:hover {
+    background: var(--white);
+    color: var(--mulberry);
+    transform: scale(1.08);
+}
+
+.btn.peligro {
+    background: var(--amethyst);
+    border-color: var(--amethyst);
+}
+
+.btn.peligro:hover {
+    background: var(--white);
+    color: var(--amethyst);
+}
+
+.pequeno, .pequeño {
+    padding: 7px 10px;
+    font-size: 14px;
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+    background: var(--white);
+    border-radius: 20px;
+    border: 6px solid var(--mulberry);
+    box-shadow: 10px 10px 0 var(--amethyst);
+    margin: 30px auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: var(--mulberry);
+    color: var(--white);
+}
+
+th, td {
+    padding: 14px;
+    border-bottom: 2px solid var(--sandstone);
+    text-align: left;
+}
+
+.cantidad {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.cantidad input {
+    width: 70px;
+    padding: 8px;
+}
+
+.resumen {
+    background: var(--white);
+    margin-top: 25px;
+    padding: 25px;
+    border-radius: 20px;
+    border: 6px solid var(--mulberry);
+    box-shadow: 8px 8px 0 var(--amethyst);
+}
+
+.acciones {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.checkout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    margin: 35px auto;
+}
+
+.formulario,
+.resumen-compra,
+.confirmacion,
+.vacio {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 20px;
+    border: 6px solid var(--mulberry);
+    box-shadow: 8px 8px 0 var(--amethyst);
+}
+
+.formulario h2,
+.resumen-compra h2 {
+    margin-bottom: 20px;
+    color: var(--mulberry);
+    text-shadow: 2px 2px 0 var(--sandstone);
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 11px;
+    border: 2px solid var(--desert);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--mulberry);
+}
+
+.formulario .btn {
+    margin-top: 20px;
+}
+
+.resumen-compra p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 10px;
+}
+
+.alerta {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 12px;
+    background: var(--sandstone);
+    border: 2px solid var(--desert);
+}
+.alerta.success { background: var(--sandstone); border-color: var(--mulberry); }
+.alerta.warning { background: var(--desert); border-color: var(--mulberry); }
+.alerta.danger { background: var(--amethyst); border-color: var(--mulberry); }
+.alerta.info { background: #f2e8f0; border-color: var(--amethyst); }
+
+.confirmacion {
+    margin: 50px auto;
+    max-width: 650px;
+    text-align: center;
+}
+
+.vacio {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.pedido {
+    border: 1px solid var(--amethyst);
+}
+
+footer {
+    margin-top: 60px;
+    background: linear-gradient(45deg, var(--mulberry), #6b3a4f, var(--amethyst), var(--mulberry));
+    color: white;
+    text-align: center;
+    padding: 35px;
+    border-top: 10px solid var(--sandstone);
+}
+
+@media (max-width: 700px) {
+    header h1 { font-size: 38px; }
+    .nav { flex-direction: column; gap: 15px; }
+    nav a { margin: 5px; }
+    .checkout { grid-template-columns: 1fr; }
+    .productos { grid-template-columns: 1fr; }
+    .hero { padding: 20px; }
+    .logo { font-size: 1.6rem; }
+}
+
+.nav-menu {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-productos {
+  background: var(--sandstone);
+  color: var(--mulberry);
+  border-color: var(--sandstone);
+}
+.btn-productos:hover {
+  background: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn-pedidos {
+  background: transparent;
+  color: var(--sandstone);
+  border-color: var(--desert);
+}
+.btn-pedidos:hover {
+  background: var(--desert);
+  color: var(--mulberry);
+}
+
+.btn-carrito {
+  background: var(--mulberry);
+  color: var(--sandstone);
+  border-color: var(--mulberry);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-carrito:hover {
+  background: var(--amethyst);
+  border-color: var(--amethyst);
+  color: var(--mulberry);
+  transform: scale(1.05);
+}
